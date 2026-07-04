@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Shared/" />
+  <Project Path="../Infrastructure/Infrastructure.csproj" />
+  <Project Path="../Web/Web.csproj" Id="c7f8c21c-f0e5-490d-9147-25e418425483" />
+  <Project Path="Domain.csproj" />
+</Solution>

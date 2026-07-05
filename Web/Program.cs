@@ -1,4 +1,6 @@
 using Infrastructure;
+using Infrastructure.AutoMapper;
+using Microsoft.AspNetCore.Components;
 using Web.Components;
 
 namespace Web;
@@ -14,6 +16,11 @@ public class Program
             .AddInteractiveServerComponents();
 
         builder.Services.AddInfrastructure(builder.Configuration);
+
+        // Front - Grid
+        builder.Services.AddQuickGridEntityFrameworkAdapter();
+        // Mapper
+        builder.Services.AddAutoMapper(x => x.AddProfile(typeof(CandidateProfile)));
 
         var app = builder.Build();
 

@@ -1,0 +1,72 @@
+﻿@page "/candidate/create"
+@inject Infrastructure.BarsContext Db
+@inject IMapper mapper
+@inject NavigationManager navigationManager;
+@using Domain.Models
+@using AutoMapper
+@using Infrastructure.Dto
+@rendermode InteractiveServer
+
+<h1>Create</h1>
+
+<div class="row">
+    <EditForm 
+        method="post"
+        FormName="create"
+        Model="CandidateCreate"
+        OnValidSubmit="AddCandidate"
+        >
+
+        <DataAnnotationsValidator/>
+
+        <div class="mb-3">
+            <label for="firstName" class="form-label">FirstName:</label>
+            <InputText id="firstName" @bind-Value="CandidateCreate.FirstName" class="form-control" />
+            <ValidationMessage For="() => CandidateCreate.FirstName" class="text-danger" />
+        </div>
+
+        <div class="mb-3">
+            <label for="lastName" class="form-label">LastName:</label>
+            <InputText id="lastName" @bind-Value="CandidateCreate.LastName" class="form-control" />
+            <ValidationMessage For="() => CandidateCreate.LastName" class="text-danger" />
+        </div>
+
+        <div class="mb-3">
+            <label for="city" class="form-label">City:</label>
+            <InputText id="city" @bind-Value="CandidateCreate.City" class="form-control" />
+            <ValidationMessage For="() => CandidateCreate.City" class="text-danger" />
+        </div>
+
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone:</label>
+            <InputText id="phone" @bind-Value="CandidateCreate.Phone" class="form-control" />
+            <ValidationMessage For="() => CandidateCreate.Phone" class="text-danger" />
+        </div>
+
+        <div class="mb-3">
+            <label for="education" class="form-label">Education:</label>
+            <InputText id="education" @bind-Value="CandidateCreate.Education" class="form-control" />
+            <ValidationMessage For="() => CandidateCreate.Education" class="text-danger" />
+        </div>
+
+        <div class="mb-3">
+            <label for="previousWork" class="form-label">PreviousWork:</label>
+            <InputText id="previousWork" @bind-Value="CandidateCreate.PreviousWork" class="form-control" />
+            <ValidationMessage For="() => CandidateCreate.PreviousWork" class="text-danger" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </EditForm>
+</div>
+
+@code {
+    private CandidateCreate CandidateCreate = new();
+
+    private Task AddCandidate(EditContext args)
+    {
+        var candidate = mapper.Map<Candidate>(CandidateCreate);
+
+        navigationManager.NavigateTo("/candidates", replace: true);
+        return Task.CompletedTask;
+    }
+}

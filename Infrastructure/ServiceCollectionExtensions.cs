@@ -21,7 +21,7 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<AppContext>(options =>
+        services.AddDbContext<BarsContext>(options =>
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
         // Здесь же можно зарегистрировать репозитории и другие сервисы

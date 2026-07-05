@@ -1,0 +1,23 @@
+﻿@page "/candidates"
+@inject Infrastructure.BarsContext Db
+@using Microsoft.AspNetCore.Components.QuickGrid
+
+<h1>Candidates</h1>
+
+<p>
+    <NavLink href="#">Create New</NavLink>
+</p>
+
+<QuickGrid Class="table" Items="Db.Candidates">
+    <PropertyColumn Property="x => x.FirstName" />
+    <PropertyColumn Property="x => x.LastName" />
+
+    <TemplateColumn Context="x">
+        <a href="@($"{x.Id}")">Edit</a>
+    </TemplateColumn>
+
+</QuickGrid>
+
+@code {
+
+}
